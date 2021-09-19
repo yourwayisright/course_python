@@ -91,7 +91,6 @@ factorial = 1
 number = 1
 for number in range(1, n+1):
     factorial = factorial*number
-    number += 1
 print('factorial is', factorial)
 #  END
 
@@ -114,7 +113,6 @@ number = 0
 for number in range(2, n+1):
     if number % 2 == 0:
         multi = multi*number
-    number += 1
 print('result is', multi)
 #  END
 
@@ -136,7 +134,7 @@ count = 0
 for c in string:
     if c == 'a':
         count += 1
-print('result is', count)
+print(count)
 #  END
 
 
@@ -239,7 +237,7 @@ string = input()
 length = len(string)
 newstring = ''
 while length != 0:
-    newstring = 'newstring'+string[length-1]
+    newstring = newstring+string[length-1]
     length = length-1
 print(newstring)
 #  END
