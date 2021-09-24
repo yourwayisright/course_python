@@ -15,12 +15,15 @@ https://www.geeksforgeeks.org/python-membership-identity-operators-not-not/
 
 
 def count_greater_or_equal(numbers, x):
-    """
-    Функия принимает на вход список чисел numbers и число x.
-    Возращает количество элементов списка numbers больше либо равных x.
-    """
-    pass
-
+    
+#Функия принимает на вход список чисел numbers и число x.
+#Возращает количество элементов списка numbers больше либо равных x.
+    
+    counter = 0
+    for number in numbers:
+        if number >= x:
+            counter += 1
+    return counter
 
 def test_count_greater_or_equal():
     assert count_greater_or_equal([1, 2, 3, 4, 5], 2) == 4
