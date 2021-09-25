@@ -117,7 +117,13 @@ def merge(a, b):
     Надо объединить их в один список, так чтобы результирующий список тоже был отсортирован.
     Нельзя пользоваться  методом sort у списка. Нельзя пользоваться стандартной функцией sorted.
     """
-    pass
+    list_ab = [*a, *b]
+    new_order = []
+    for i in range(0, len(list_ab)):
+        temp_min_symbol = min(list_ab)
+        new_order.append(temp_min_symbol)
+
+    return (new_order)
 
 
 def test_merge():
@@ -138,7 +144,18 @@ def has_substring(s, t):
     Нельзя пользоваться оператором in или любой другой встроенной опрецией проверки на подстроку.
     Делаем все руками :)
     """
+    list_s = [*s]
+    list_t = [*t]
+    s_check = []
 
+    for i in range(0, len(s)):
+        s_check.append(list_s[i])
+        if list_t == s_check:
+            result = True
+        else:
+            result = False
+
+    return (result)
 
 def test_has_substring():
     assert has_substring("some text", "text") is True
