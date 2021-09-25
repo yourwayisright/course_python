@@ -42,7 +42,13 @@ def rotate(numbers, n):
     Операция вращения работает так: 0-ой элемент становится 1-м, 1-ый становится вторым, 2-ой третьим и т д.
     Последний становится первый. Примеры смотреть в тестовой функции.
     """
-    pass
+    for rotation_counter in range(1, n+1):
+        first = numbers.pop()
+        second = numbers[0]
+        current = numbers[1]
+        numbers.append(current)
+        numbers = [first, second, current]
+    return numbers
 
 
 def test_rotate():
@@ -61,7 +67,14 @@ def extend(a, b):
     Даны два списка, надо их обеъединить и получить один список.
     Надо расширить список a элементами из списка b.
     """
-    pass
+
+    list_a = [*a]
+    list_b = [*b]
+
+    for i in range(0, (len(b))):
+        list_a_new = list_a.append(list_b.index[i])
+
+    return list_a_new
 
 
 def test_extend():
@@ -77,9 +90,14 @@ def is_prime(n):
     """
     Дано число n.
     Если n простое число верните True, иначе False.
-    Определние простого числа https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B5_%D1%87%D0%B8%D1%81%D0%BB%D0%BE
+    Определние  простого числа https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B5_%D1%87%D0%B8%D1%81%D0%BB%D0%BE
     """
+    if n > 1 and n % 1 == 0 and n % n == 0:
+        result = True
+    else:
+        result = False
 
+    return (result)
 
 def test_is_prime():
     assert is_prime(1) is False
