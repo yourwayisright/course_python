@@ -25,12 +25,19 @@ def test_unique():
     assert unique([]) == []
 
 
-def count_words(string):
+def count_words(strings):
     """
     Дан список строк strings.
     Нужно для каждой строки посчитать сколько раз она встретилось в списке.
     """
-    pass
+    
+    counter = {}
+    for string in strings:
+        if string is not in counter:
+            counter[string] = 1
+        else:
+            counter[string] += 1
+    return counter
 
 
 def test_count_words():
