@@ -99,6 +99,9 @@ def filter_even(numbers):
     в отсортированном по возрастанию порядке
     """
 
+    evens = list(filter(lambda number: number % 2  == 0, numbers))
+    evens.sort
+    return evens
 
 def test_filter_even():
     assert filter_even([1, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12]) == [2, 4, 6, 8, 10, 12]
