@@ -60,7 +60,16 @@ def consistent_string(strings, allowed):
     Реализуйте функцию, которая из списка строк strings отфильтрует только те, которые состоят из символов
     содержащихся в allowed и не содержат других символов. Нужное вернуть множество(set) из нужных строк.
     """
-    pass
+
+    result = set()
+    for string in strings:
+        is_consistent = True
+        for symbol in string:
+            if symbol not in allowed:
+                is_consistent = False
+        if is_consistent:
+            result.add(string)
+    return result
 
 
 def test_consistent_string():
