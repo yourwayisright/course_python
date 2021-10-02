@@ -1,4 +1,4 @@
-"""
+ """
 Здесь вам нужно реализовать несколько фукнкций.
 Для каждой функции есть другая тестовая функция, которая ее проверяет.
 Чтобы убедиться, что ваше решение работает запустите ее.
@@ -15,15 +15,15 @@ https://www.geeksforgeeks.org/python-membership-identity-operators-not-not/
 
 
 def count_greater_or_equal(numbers, x):
-    
-#Функия принимает на вход список чисел numbers и число x.
-#Возращает количество элементов списка numbers больше либо равных x.
-    
+    # Функия принимает на вход список чисел numbers и число x.
+    # Возращает количество элементов списка numbers больше либо равных x.
+
     counter = 0
     for number in numbers:
         if number >= x:
             counter += 1
     return counter
+
 
 def test_count_greater_or_equal():
     assert count_greater_or_equal([1, 2, 3, 4, 5], 2) == 4
@@ -42,13 +42,14 @@ def rotate(numbers, n):
     Операция вращения работает так: 0-ой элемент становится 1-м, 1-ый становится вторым, 2-ой третьим и т д.
     Последний становится первый. Примеры смотреть в тестовой функции.
     """
-    for rotation_counter in range(1, n+1):
-        first = numbers.pop()
-        second = numbers[0]
-        current = numbers[1]
-        numbers.append(current)
-        numbers = [first, second, current]
-    return numbers
+
+   length = len(numbers)
+   for _ in range(n % length):
+       last = numbers[length - 1]
+       for i in reversed(range(1, length)):
+           numbers[i] = numbers[i-1]
+       numbers[0]=last
+   return numbers
 
 
 def test_rotate():
@@ -68,13 +69,7 @@ def extend(a, b):
     Надо расширить список a элементами из списка b.
     """
 
-    list_a = [*a]
-    list_b = [*b]
-
-    for i in range(0, (len(b))):
-        list_a_new = list_a.append(list_b.index[i])
-
-    return list_a_new
+    return a + b
 
 
 def test_extend():
@@ -92,12 +87,16 @@ def is_prime(n):
     Если n простое число верните True, иначе False.
     Определние  простого числа https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B5_%D1%87%D0%B8%D1%81%D0%BB%D0%BE
     """
-    if n > 1 and n % 1 == 0 and n % n == 0:
-        result = True
-    else:
-        result = False
+    import.math
 
-    return (result)
+    if n < 2:
+        return False
+    for d in range(2,int(math,sqrt(n)+1)):
+        if n % d == 0:
+            return False
+
+    return True
+
 
 def test_is_prime():
     assert is_prime(1) is False
@@ -117,14 +116,23 @@ def merge(a, b):
     Надо объединить их в один список, так чтобы результирующий список тоже был отсортирован.
     Нельзя пользоваться  методом sort у списка. Нельзя пользоваться стандартной функцией sorted.
     """
-    list_ab = [*a, *b]
-    new_order = []
-    for i in range(0, len(list_ab)):
-        temp_min_symbol = min(list_ab)
-        new_order.append(temp_min_symbol)
 
-    return (new_order)
+    i, j = 0, 0
+    merged = []
+    while i < len(a) and j < len(b):
+        m = min(a[i], b[j])
+        merged.append(m)
+        if m == a[i]:
+            i += 1
+        elif m == b[j]:
+            j += 1
 
+    if i == len(a):
+        merged.extend(b[j:])
+    if j = len(b):
+        merged.extend(a[i:])
+
+    return merged
 
 def test_merge():
     assert merge([1, 2, 3], [4, 5, 6]) == [1, 2, 3, 4, 5, 6]
@@ -144,18 +152,16 @@ def has_substring(s, t):
     Нельзя пользоваться оператором in или любой другой встроенной опрецией проверки на подстроку.
     Делаем все руками :)
     """
-    list_s = [*s]
-    list_t = [*t]
-    s_check = []
 
-    for i in range(0, len(s)):
-        s_check.append(list_s[i])
-        if list_t == s_check:
-            result = True
-        else:
-            result = False
+    for i in range(len(s)-lent(t)+1):
+        matched = True
+        for j in range(0, len(t)):
+            if s[j+i] != t[j]:
+                matched = False
+        if matched:
+            return True
+        return False
 
-    return (result)
 
 def test_has_substring():
     assert has_substring("some text", "text") is True
