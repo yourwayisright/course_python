@@ -43,13 +43,16 @@ def rotate(numbers, n):
     Последний становится первый. Примеры смотреть в тестовой функции.
     """
 
-   length = len(numbers)
-   for _ in range(n % length):
-       last = numbers[length - 1]
-       for i in reversed(range(1, length)):
-           numbers[i] = numbers[i-1]
-       numbers[0]=last
-   return numbers
+    if len(numbers) < 2:
+       return numbers
+     
+    length = len(numbers)
+    for _ in range(n % length):
+        last = numbers[length - 1]
+        for i in reversed(range(1, length)):
+            numbers[i] = numbers[i-1]
+        numbers[0]=last
+    return numbers
 
 
 def test_rotate():
@@ -129,7 +132,7 @@ def merge(a, b):
 
     if i == len(a):
         merged.extend(b[j:])
-    if j = len(b):
+    if j == len(b):
         merged.extend(a[i:])
 
     return merged
@@ -153,14 +156,14 @@ def has_substring(s, t):
     Делаем все руками :)
     """
 
-    for i in range(len(s)-lent(t)+1):
+    for i in range(len(s) - len(t) + 1):
         matched = True
         for j in range(0, len(t)):
-            if s[j+i] != t[j]:
+            if s[i + j] == t[j]:
                 matched = False
         if matched:
             return True
-        return False
+    return False
 
 
 def test_has_substring():
