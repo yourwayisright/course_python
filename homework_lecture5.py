@@ -84,7 +84,8 @@ def sort_desc(strings):
     """
     Дан список строк. Отсортируйте его в порядке обратном алфавитному.
     """
-    pass
+    strings.sort(reverse = True)
+    return strings
 
 
 def test_sort_desc():
