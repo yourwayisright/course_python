@@ -1,0 +1,59 @@
+"""
+Задача 2.
+Нужно реализовать модуль string.py для работы строками и реализовать там несколько функций:
+has_substring(s, t) - функция проверяет есть ли в строке s подстрока t. Мы такую задачу решали в предыдущих заданиях.
+is_number(s) - проверяет что строка является числом. Например, строка "1234" является числом, а строка "abc12" не является.
+is_case_insensitive_equal(s, t) - проверяет что строки одинаковы, даже если отличаются регистром букв. Например, "AAbbAA"
+одинаковая со строкой "aaBBaA". Эти строки состоят из тех же букв на тех же позициях просто в разных регистрах.
+"""
+
+def has_substring(s, t):
+    for i in range(len(s) - len(t) + 1):
+        matched = True
+        for j in range(0, len(t)):
+            if s[i + j] == t[j]:
+                matched = False
+        if matched:
+            return True
+    return False
+
+def test_has_substring():
+    assert has_substring("fgfdgfdga", "a") is True
+    print("has_substring - Tests passed")
+
+test_has_substring()
+
+
+def is_number(s):
+    counter = 0
+    for i in range(len(s)):
+        if s[i] in ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'):
+            pass
+        else:
+            counter = 1
+    if counter == 0:
+        return True
+    else:
+        return False
+
+def test_is_number():
+    assert is_number("asdf") is False
+    assert is_number("a4sdf") is False
+    assert is_number("4323f") is False
+    assert is_number("23231") is True
+    print("is_number - Tests passed")
+
+test_is_number()
+
+def is_case_insensitive_equal(s, t):
+    if s.upper() == t.upper():
+        return True
+    else:
+        return False
+
+
+def test_is_case_insensitive_equal():
+    assert is_case_insensitive_equal("AAbbAA","aaBBaA") is True
+    print("is_case_insensitive_equal - Tests passed")
+
+test_is_case_insensitive_equal()
