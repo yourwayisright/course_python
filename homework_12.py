@@ -1,4 +1,3 @@
-
 class Vector:
     def __init__(self, x1, y1, x2, y2):
         self.x1 = int(x1)
@@ -7,15 +6,15 @@ class Vector:
         self.y2 = int(y2)
 
     def summarize (self):
-        result = ([self.x1 + self.x2], [self.y1 + self.y2])
+        result = (self.x1 + self.x2, self.y1 + self.y2)
         return result
 
     def substraction (self):
-        result = ([self.x1 - self.x2], [self.y1 - self.y2])
+        result = (self.x1 - self.x2, self.y1 - self.y2)
         return result
 
     def multiplication(self):
-        result = ([self.x1 * self.x2],[self.y1 * self.x2])
+        result = (self.x1 * self.x2,self.y1 * self.x2)
         return result
 
 while True:
