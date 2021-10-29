@@ -69,6 +69,16 @@ def test_consistent_string():
                                                                                                            "ac", "d"}
 
 
+@pytest.mark.parametrize(    'allowed, strings, result',
+                          [
+                             ("ab",  ["ad", "bd", "aaab", "baa", "badab"],      {"aaab", "baa"}),
+                             ("abc", ["a", "b", "c", "ab", "ac", "bc", "abc"],  {"a", "b", "c", "ab", "ac", "bc", "abc"}),
+                             ("cad", ["cc", "acd", "b", "ba", "bac", "bad", "ac", "d"],  {"cc", "acd", "ac", "d"}),
+                          ])
+def test_consistent_string_parametrized(allowed, strings, result):
+    assert consistent_string(allowed=allowed, strings=strings) == result
+
+
 def sort_desc(strings):
     """
     Дан список строк. Отсортируйте его в порядке обратном алфавитному.
