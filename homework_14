@@ -1,0 +1,13 @@
+reader = open("in.txt", mode="r")
+content = reader.read().split()
+
+newtext = []
+for word in content:
+    if len(word)>5:
+        print (len(word))
+        newtext.append(word)
+
+output = " ".join(map(str, newtext))
+
+writer = open("out.txt", mode="w")
+writer.write(output)
