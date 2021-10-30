@@ -5,14 +5,20 @@ def unique(numbers):
     Дна список чисел. Некоторые числа в нем могут повторяться.
     Верните новый список чисел, который состоит из чисел numbers, но уже без повторений.
     """
-
     return list(set(numbers))
 
+@pytest.mark.parametrize('numbers, result',
+                         [
+                             ([1, 1, 2, 3, 4, 4, 5, 5],[1, 2, 3, 4, 5]),
+                             ([1, 1, 1, 1],[1]),
+                             ([],[]),
+                         ]
+                        )
 
-def test_unique():
-    assert unique([1, 1, 2, 3, 4, 4, 5, 5]) == [1, 2, 3, 4, 5]
-    assert unique([1, 1, 1, 1]) == [1]
-    assert unique([]) == []
+def test_unique_parametrized(numbers, result):
+    print("test_unique_parametrized is called")
+    assert unique(numbers) == result
+
 
 def count_words(strings):
     """
@@ -28,19 +34,17 @@ def count_words(strings):
             counter[string] += 1
     return counter
 
+@pytest.mark.parametrize('strings, result',
+                          [
+                              (["text", "text", "apple", "orange", "yellow", "orange"],{"text": 2,"orange": 2,"yellow": 1,"apple": 1}),
+                              (["text", "text", "text", "text", "text", "orange"],{"text": 5,"orange": 1,}),
+                              ([],{})
+                          ]
+                         )
 
-def test_count_words():
-    assert count_words(["text", "text", "apple", "orange", "yellow", "orange"]) == {
-        "text": 2,
-        "orange": 2,
-        "yellow": 1,
-        "apple": 1
-    }
-    assert count_words(["text", "text", "text", "text", "text", "orange"]) == {
-        "text": 5,
-        "orange": 1,
-    }
-    assert count_words([]) == {}
+def test_count_words_parametrized(strings,result):
+    print("test_count_words_parametrized is called")
+    assert count_words(strings) == result
 
 
 def consistent_string(strings, allowed):
@@ -60,22 +64,15 @@ def consistent_string(strings, allowed):
             result.add(string)
     return result
 
-
-def test_consistent_string():
-    assert consistent_string(allowed="ab", strings=["ad", "bd", "aaab", "baa", "badab"]) == {"aaab", "baa"}
-    assert consistent_string(allowed="abc", strings=["a", "b", "c", "ab", "ac", "bc", "abc"]) == {"a", "b", "c", "ab",
-                                                                                                  "ac", "bc", "abc"}
-    assert consistent_string(allowed="cad", strings=["cc", "acd", "b", "ba", "bac", "bad", "ac", "d"]) == {"cc", "acd",
-                                                                                                           "ac", "d"}
-
-
 @pytest.mark.parametrize(    'allowed, strings, result',
                           [
                              ("ab",  ["ad", "bd", "aaab", "baa", "badab"],      {"aaab", "baa"}),
                              ("abc", ["a", "b", "c", "ab", "ac", "bc", "abc"],  {"a", "b", "c", "ab", "ac", "bc", "abc"}),
                              ("cad", ["cc", "acd", "b", "ba", "bac", "bad", "ac", "d"],  {"cc", "acd", "ac", "d"}),
                           ])
+
 def test_consistent_string_parametrized(allowed, strings, result):
+    print("test_consistent_string_parametrized is called")
     assert consistent_string(allowed=allowed, strings=strings) == result
 
 
@@ -86,10 +83,16 @@ def sort_desc(strings):
     strings.sort(reverse=True)
     return strings
 
+@pytest.mark.parametrize('strings,result',
+                         [
+                             (["ad", "bd", "aaab", "baa", "badab"],['bd', 'badab', 'baa', 'ad', 'aaab']),
+                             (["a", "b", "c", "ab", "ac", "bc", "abc"],['c', 'bc', 'b', 'ac', 'abc', 'ab', 'a'])
+                         ]
+                         )
 
-def test_sort_desc():
-    assert sort_desc(["ad", "bd", "aaab", "baa", "badab"]) == ['bd', 'badab', 'baa', 'ad', 'aaab']
-    assert sort_desc(["a", "b", "c", "ab", "ac", "bc", "abc"]) == ['c', 'bc', 'b', 'ac', 'abc', 'ab', 'a']
+def test_sort_desc_parametrized(strings, result):
+    print("test_sort_desc_parametrized is called")
+    assert sort_desc(strings) == result
 
 
 def filter_even(numbers):
@@ -102,9 +105,15 @@ def filter_even(numbers):
     evens.sort
     return evens
 
+@pytest.mark.parametrize('numbers, result',
+                         [
+                             ([1, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12],[2, 4, 6, 8, 10, 12]),
+                             ([2, 2, 4, 6, 6, 8, 10, 12],[2, 2, 4, 6, 6, 8, 10, 12]),
+                             ([1, 1, 2, 3],[2]),
+                             ([1, 3, 5],[])
+                         ]
+                         )
 
-def test_filter_even():
-    assert filter_even([1, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12]) == [2, 4, 6, 8, 10, 12]
-    assert filter_even([2, 2, 4, 6, 6, 8, 10, 12]) == [2, 2, 4, 6, 6, 8, 10, 12]
-    assert filter_even([1, 1, 2, 3]) == [2]
-    assert filter_even([1, 3, 5]) == []
+def test_filter_even_parametrized(numbers,result):
+    print("test_filter_even_parametrized is called")
+    assert filter_even(numbers) == result
